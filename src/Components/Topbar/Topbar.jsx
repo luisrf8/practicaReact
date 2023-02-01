@@ -18,7 +18,7 @@ export default function AuthOptions(props) {
           <Icon name="home" />
         </Button>
         <div className='image-logo'>
-          Soko
+        practice
         </div>
         <Button className='register' onClick={() => setSelectedForm("login")}>
           Admin
