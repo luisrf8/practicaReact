@@ -1,14 +1,14 @@
 @import "../../../scss/index.scss";
 
 .login-form {
-    margin-top: 30%;
     display: flex;
     justify-content: center;
-
+    // flex-direction: column;
     .ui.form {
         .field {
             .input {
                 margin-bottom: 5px;
+                margin-top: 5rem;
                 input{
                     display: flex;
                     justify-items: center;
@@ -73,8 +73,20 @@
                 letter-spacing: 1px;
         }
     }
+    &__logo {
+        display: flex;
+        justify-content: center;
+        margin-top: 10%;
+        img {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 20rem;
+                border-radius: 20px;
+        }
+    }
     &__options {
-        margin-top: 50px;
+        margin-top: 30px;
         color: $font-light;
         text-align: center;
         font-size: 16px;
@@ -83,7 +95,7 @@
         
         p {
             &:first-of-type {
-                margin-bottom: 40px;
+                // margin-bottom: 40px;
                 &:hover {
                     cursor:pointer;
                 }

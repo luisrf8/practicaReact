@@ -32,7 +32,7 @@ function MenuLeft(props) {
           active={activeMenu === "home"}
           onClick={handlerMenu}
         >
-          <Icon name="home" /> Inicio
+          <Icon name="home" /> perfil
         </Menu.Item>
         <Menu.Item
           as={Link}
@@ -41,16 +41,16 @@ function MenuLeft(props) {
           active={activeMenu === "artists"}
           onClick={handlerMenu}
         >
-          <Icon name="music" /> Artistas
+          <Icon name="music" /> asd
         </Menu.Item>
       </div>
       {userAdmin && (
         <div className="footer">
           <Menu.Item>
-            <Icon name="plus square outline" /> Nuevo Artista
+            <Icon name="plus square outline" /> Settings
           </Menu.Item>
           <Menu.Item>
-            <Icon name="plus square outline" /> Nuevo Canción
+            <Icon name="plus square outline" /> Cerrar Sesion
           </Menu.Item>
         </div>
       )}

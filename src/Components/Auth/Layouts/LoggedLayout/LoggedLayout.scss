@@ -1,7 +1,7 @@
 @import "../../../../scss/index.scss";
 
 .ui.grid.logged-layout {
-    background-color: $background-grey-dark-light;
+    background-color: #ffff;
     min-height: 100vh;
     margin: 0;
 
@@ -18,9 +18,5 @@
         > .column {
             padding: 0;
         }
-    }
-
-    .content {
-        
     }
 }

@@ -3,23 +3,32 @@ import { Button, Icon, Form, Input } from "semantic-ui-react";
 import { toast } from "react-toastify";
 // import { validateEmail } from "../../../Utils/Validations";
 import firebase from "../../../Utils/Firebase";
+import PagandoLogo from "../../../assets/svg/Imagotipo_Vertical_-_V1.svg"
+import verificationImage from "../../../assets/webp/perro-pug-en-el-jardin-770x470.webp"
+// import axios from "axios";
 import "firebase/auth";
 
 import "./LoginForm.scss";
-
+const baseURL = ""
 export default function LoginForm(props) {
+  // console.log(props)
   const { setSelectedForm } = props
   const [formData, setFormData] = useState(defaulValueForm())
   const [showPassword, setShowPassword] = useState(false)
   const [formError, setFormError] = useState({})
   const [isLoading, setIsLoading] = useState(false)
+  const [verifyEmail, setVerifyEmail] = useState(false)
   const [userActive, setUserActive] = useState(true)
-  const [user, setUser] = useState(null)
+  // const [user, setUser] = useState(null)
 
   const handlerShowPassword = () => {
     setShowPassword(!showPassword);
   };
-
+  const changeEmailStatus = () => {
+    // if (formData.email){
+      setVerifyEmail(!verifyEmail);
+    // }
+  }
   const onChange = e => {
     setFormData({
       ...formData, [e.target.name]: e.target.value,
@@ -43,7 +52,7 @@ export default function LoginForm(props) {
     if (formOk) {
       console.log(formData)
       setIsLoading(true)
-      firebase.auth( ).signInWithEmailAndPassword(formData.email, formData.password)
+      firebase.auth().signInWithEmailAndPassword(formData.email, formData.password)
       .then(response => {
         console.log(response.user)
         setUserActive(true)
@@ -59,9 +68,12 @@ export default function LoginForm(props) {
   };
   return (
     <div>
+    <div className="login-form__logo">
+      <img src={PagandoLogo}/>
+    </div>
     <div className="login-form">
       <Form onSubmit={onSubmit} onChange={onChange}>
-        <Form.Field>
+        {!verifyEmail ? (<Form.Field>
           <Input
             type="text"
             name="email"
@@ -74,8 +86,14 @@ export default function LoginForm(props) {
               Introduzca un correo Valido
             </span>
           )}
+          <div className="login-form__button">
+            <Button type="submit" onClick ={changeEmailStatus} className="continue-button" loading = {isLoading}>Continuar</Button>
+          </div>
         </Form.Field>
-        <Form.Field>
+        ) : (<Form.Field>
+          <div className="login-form__logo">
+            <img src={verificationImage} alt="" />
+          </div>
           <Input
             type={showPassword ? "text" : "password"}
             name="password"
@@ -98,22 +116,29 @@ export default function LoginForm(props) {
               Introduzca un contraseña de mas de 6 digitos.
             </span>
           )}
-        </Form.Field>
-        
-      </Form>
-    </div>
-    <div className="login-form__button">
-      <Button type="submit" onClick ={onSubmit} className="continue-button" loading = {isLoading}>Continuar</Button>
-    </div>
-      <div className="login-form__options">
+          <div className="login-form__button">
+            <Button type="submit" onClick ={onSubmit} className="continue-button" loading = {isLoading}>Iniciar sesion</Button>
+          </div>
+          <div className="login-form__options">
+          <p>
+            ¿No es tu imagen?
+          </p>
         <p
           onClick={() => {
-            setSelectedForm(null);
+            changeEmailStatus();
           }}
         >
           Volver
         </p>
       </div>
+          
+        </Form.Field> 
+        )}
+        {/* */}
+      </Form>
+    </div>
+
+
     </div>
 
   );
